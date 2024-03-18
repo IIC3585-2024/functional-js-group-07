@@ -44,6 +44,7 @@ function codeBlockObjects(paragraphObjects, codeIndexes) {
     return paragraphObjects;
 }
 
+// Create paragraph objects
 function pObjects(paragraphs) {
     const paragraphObjects = paragraphs.map(p => {
         let header = 0;
@@ -75,10 +76,13 @@ function pObjects(paragraphs) {
 // Get paragraphs
 const paragraphs = text.split('\n').map(p => p.trimEnd()).map(p => p.trim().length > 0? p : '\n');
 
+// Create paragraph objects
 const paragraphObjects = pObjects(paragraphs);
 
+// Get code block indexes
 const codeIndexes = codeBlockIndexes(paragraphObjects);
 
+// Create code block objects
 const codeBlockParagraphs = codeBlockObjects(paragraphObjects, codeIndexes);
 
 console.log(codeBlockParagraphs);
