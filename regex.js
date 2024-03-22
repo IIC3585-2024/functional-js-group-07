@@ -60,13 +60,14 @@ const markdownOrderedList = `1. Item 1
 
 console.log(markdownOrderedListToHTML(markdownOrderedList));
 
+// BLOCKQUOTE
+
 // Testing de la funcion
 const markdownBlockquote = `> Blockquote 1
 >
 > Blockquote 3`
 
 
-// blockquotes
 function markdownBlockquotesToHTML (markdown) {
   const blockquotesRegex = /^>(.*)$/gm;
 
@@ -78,7 +79,33 @@ function markdownBlockquotesToHTML (markdown) {
   return HTMLText;
 }
 
-console.log(markdownBlockquotesToHTML(markdownBlockquote));
+//console.log(markdownBlockquotesToHTML(markdownBlockquote));
+
+
+// Testing de la funcion
+const markdownCodeBlock = `This is a paragraph
+\`\`\`
+This is a code block
+\`\`\`
+This is the next paragraph
+`
+
+
+function markdownCodeBlockToHTML (markdown) {
+  // code blocks start with ``` and end with ```. It can have multiple lines.
+  const codeBlockRegex = /```([\s\S]*?)```/g;
+
+  // replace the code block with the code block HTML, and remove the ``` from the start and end
+  const transformToCodeBlockHTML = (match, capturedText) => `<code>${capturedText}</code>`;
+  let codeBlockItems = markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
+
+
+  let HTMLText = codeBlockItems;
+
+  return HTMLText;
+}
+
+//console.log(markdownCodeBlockToHTML(markdownCodeBlock));
 
 // Testing de la funcion
 const markdownParagraph = `This is a paragraph  
@@ -103,4 +130,4 @@ function markdownParagraphToHTML (markdown) {
   return paragraphItems;
 }
 
-console.log(markdownParagraphToHTML(markdownParagraph));
+//console.log(markdownParagraphToHTML(markdownParagraph));
