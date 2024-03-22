@@ -89,7 +89,9 @@ This is the next section of the paragraph
 This is the next paragraph`
 
 function markdownParagraphToHTML (markdown) {
-  
+
+
+  // Regex obtained from https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
   const paragraphRegex = /^[A-Za-z].*(?:\n[A-Za-z].*)*/gm;
   // replace new lines and double spaces with a break tag
   const breakTagRegex = /\s{2,}\n/g;
