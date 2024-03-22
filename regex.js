@@ -59,3 +59,46 @@ const markdownOrderedList = `1. Item 1
 3. Item 3`
 
 console.log(markdownOrderedListToHTML(markdownOrderedList));
+
+// Testing de la funcion
+const markdownBlockquote = `> Blockquote 1
+>
+> Blockquote 3`
+
+
+// blockquotes
+function markdownBlockquotesToHTML (markdown) {
+  const blockquotesRegex = /^>(.*)$/gm;
+
+  const transformToBlockquotesHTML = (match, capturedText) => `   ${capturedText}`;
+  let blockquotesItems = markdown.replace(blockquotesRegex, transformToBlockquotesHTML);
+
+  let HTMLText = `<blockquote>\n${blockquotesItems}\n</blockquote>`;
+
+  return HTMLText;
+}
+
+console.log(markdownBlockquotesToHTML(markdownBlockquote));
+
+// Testing de la funcion
+const markdownParagraph = `This is a paragraph  
+This is the next section of the paragraph
+
+## This is a header
+
+This is the next paragraph`
+
+function markdownParagraphToHTML (markdown) {
+  
+  const paragraphRegex = /^[A-Za-z].*(?:\n[A-Za-z].*)*/gm;
+  // replace new lines and double spaces with a break tag
+  const breakTagRegex = /\s{2,}\n/g;
+  
+  const transformToParagraphHTML = (match) => `<p>${match.replace(breakTagRegex, '<br>')}</p>`;
+
+  let paragraphItems = markdown.replace(paragraphRegex, transformToParagraphHTML);
+  
+  return paragraphItems;
+}
+
+console.log(markdownParagraphToHTML(markdownParagraph));
