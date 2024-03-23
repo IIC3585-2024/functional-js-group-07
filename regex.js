@@ -79,8 +79,9 @@ function markdownBlockquotesToHTML (markdown) {
   return HTMLText;
 }
 
-//console.log(markdownBlockquotesToHTML(markdownBlockquote));
+console.log(markdownBlockquotesToHTML(markdownBlockquote));
 
+// CODE BLOCK
 
 // Testing de la funcion
 const markdownCodeBlock = `This is a paragraph
@@ -90,22 +91,18 @@ This is a code block
 This is the next paragraph
 `
 
-
 function markdownCodeBlockToHTML (markdown) {
   // code blocks start with ``` and end with ```. It can have multiple lines.
   const codeBlockRegex = /```([\s\S]*?)```/g;
 
   // replace the code block with the code block HTML, and remove the ``` from the start and end
   const transformToCodeBlockHTML = (match, capturedText) => `<code>${capturedText}</code>`;
-  let codeBlockItems = markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
-
-
-  let HTMLText = codeBlockItems;
-
-  return HTMLText;
+  return markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
 }
 
-//console.log(markdownCodeBlockToHTML(markdownCodeBlock));
+console.log(markdownCodeBlockToHTML(markdownCodeBlock));
+
+// PARAGRAPHS
 
 // Testing de la funcion
 const markdownParagraph = `This is a paragraph  
@@ -125,9 +122,77 @@ function markdownParagraphToHTML (markdown) {
   
   const transformToParagraphHTML = (match) => `<p>${match.replace(breakTagRegex, '<br>')}</p>`;
 
-  let paragraphItems = markdown.replace(paragraphRegex, transformToParagraphHTML);
-  
-  return paragraphItems;
+  return markdown.replace(paragraphRegex, transformToParagraphHTML);
 }
 
-//console.log(markdownParagraphToHTML(markdownParagraph));
+console.log(markdownParagraphToHTML(markdownParagraph));
+
+// LINKS
+
+// Testing de la funcion
+const markdownLink = `[This is a link](https://www.google.com)`
+const markdownLink2 = `[This is a link](https://www.google.com) and [This is another link](https://www.google.com "Google")`
+
+function markdownLinkToHTML (markdown) {
+  const linkRegex = /(?<!\!)\[(.*?)\]\((.*?)\)/g;
+  
+  // check if the link has a title, if it does, add it to the link as a title attribute
+  const transformToLinkHTML = (match, text, url) => {
+    const titleRegex = /\ "(.*?)"/;
+    if (titleRegex.test(url)) {
+      const title = url.match(titleRegex)[1];
+      return `<a href="${url.replace(titleRegex, '')}" title="${title}">${text}</a>`;
+    } else {
+      return `<a href="${url}">${text}</a>`;
+    }
+  }
+
+  return markdown.replace(linkRegex, transformToLinkHTML);
+}
+
+console.log(markdownLinkToHTML(markdownLink));
+console.log(markdownLinkToHTML(markdownLink2));
+
+// URLS AND EMAILS
+
+//Testing de la funcion
+const markdownURl = `<https://www.google.com>`
+const markdownURl2 = `<https://www.google.com> and <fake@example.com>`
+
+function markdownURLToHTML (markdown) {
+  const urlRegex = /<(.+?)>/g;
+
+  const transformToURLHTML = (match, url) => `<a href="${url}">${url}</a>`;
+
+  return markdown.replace(urlRegex, transformToURLHTML);
+}
+
+console.log(markdownURLToHTML(markdownURl));
+console.log(markdownURLToHTML(markdownURl2));
+
+
+// IMAGES
+
+// Testing de la funcion
+const markdownImage = `![This is an image](https://www.google.com)`
+const markdownImage2 = `![This is an image](https://www.google.com) and ![This is another image](https://www.google.com)`
+
+function markdownImageToHTML (markdown) {
+  const imageRegex = /!\[(.*?)\]\((.*?)\)/g;
+
+  // check if the image has a title, if it does, add it to the image as a title attribute
+  const transformToImageHTML = (match, text, url) => {
+    const titleRegex = /\ "(.*?)"/;
+    if (titleRegex.test(url)) {
+      const title = url.match(titleRegex)[1];
+      return `<img src="${url.replace(titleRegex, '')}" alt="${text}" title="${title}">`;
+    } else {
+      return `<img src="${url}" alt="${text}">`;
+    }
+  }
+
+  return markdown.replace(imageRegex, transformToImageHTML);
+}
+
+console.log(markdownImageToHTML(markdownImage));
+console.log(markdownImageToHTML(markdownImage2));
