@@ -9,21 +9,24 @@ const {
   markdownParagraphToHTML,
   markdownH1ToHTML,
   markdownBoldToHTML,
-  markdownItalicToHTML
+  markdownItalicToHTML,
+  markdownCodeToHTML,
+  markdownURLToHTML
 } = require('./regex.js');
 
-const markdownToHTML = [  
+const markdownToHTML = [ 
+  markdownURLToHTML,
   markdownBlockquotesToHTML,
   markdownUnorderedListToHTML,
   markdownOrderedListToHTML,
   markdownCodeBlockToHTML,
   markdownLinkToHTML,
-  //markdownURLToHTML,
   markdownImageToHTML,
   markdownParagraphToHTML,
   markdownH1ToHTML,
   markdownBoldToHTML,
-  markdownItalicToHTML
+  markdownItalicToHTML,
+  markdownCodeToHTML
 ];
 
 const parseMarkdownToHTML = (markdown) => pipe(markdownToHTML)(markdown);

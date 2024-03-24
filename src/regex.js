@@ -5,6 +5,7 @@ const replaceMarkdown = (regex, replacement) => (markdown) => {
 const h1Regex = /^#\s*(.*)$/gim;
 const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
+const codeRegex = /`(.*)`/g;
 
 function markdownUnorderedListToHTML (markdown) {
   const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;
@@ -109,6 +110,7 @@ function markdownImageToHTML (markdown) {
 const markdownH1ToHTML = replaceMarkdown(h1Regex, '<h1>$1</h1>');
 const markdownBoldToHTML = replaceMarkdown(boldRegex, '<strong>$1$2</strong>');
 const markdownItalicToHTML = replaceMarkdown(italicRegex, '<em>$1</em>');
+const markdownCodeToHTML = replaceMarkdown(codeRegex, '<code>$1</code>');
 
 module.exports = {
   markdownUnorderedListToHTML,
@@ -121,5 +123,6 @@ module.exports = {
   markdownImageToHTML,
   markdownH1ToHTML,
   markdownBoldToHTML,
-  markdownItalicToHTML
+  markdownItalicToHTML,
+  markdownCodeToHTML
 };
