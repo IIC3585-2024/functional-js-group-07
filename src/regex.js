@@ -25,10 +25,13 @@ function markdownOrderedListToHTML (markdown) {
 }
 
 function markdownBlockquotesToHTML (markdown) {
-  const blockquotesRegex = /^>(.*)$/gm;
+  const blockquotesRegex = /^> *(.*)$/gm;
   const wholeBlockquoteRegex = /((?:    .*\n)+)/g;
 
-  const transformToBlockquotesHTML = (match, capturedText) => `    ${capturedText}`
+  const transformToBlockquotesHTML = (match, capturedText) => {
+    const pFormatText = markdownParagraphToHTML(capturedText);
+    return `    ${pFormatText}`;
+  }
 
   return markdown
     .replace(blockquotesRegex, transformToBlockquotesHTML)
