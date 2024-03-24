@@ -28,7 +28,7 @@ function markdownBlockquotesToHTML (markdown) {
   const blockquotesRegex = /^>(.*)$/gm;
   const wholeBlockquoteRegex = /((?:    .*\n)+)/g;
 
-  const transformToBlockquotesHTML = (match,capturedText) => `    ${capturedText}`
+  const transformToBlockquotesHTML = (match, capturedText) => `    ${capturedText}`
 
   return markdown
     .replace(blockquotesRegex, transformToBlockquotesHTML)
