@@ -236,4 +236,6 @@ This is the next paragraph
 
 ![This is an image](https://www.google.com)`
 
-console.log(markdownToHTMLText(markdownText));
+// console.log(markdownToHTMLText(markdownText));
+
+module.exports = { markdownToHTMLText };
