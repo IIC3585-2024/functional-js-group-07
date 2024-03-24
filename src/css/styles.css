@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(27, 203, 133);
+}
+
+strong {
+    color: rgb(3, 120, 40);
+}
+
+em {
+    color: rgb(21, 226, 62);
+}
+
+p {
+    color: rgb(0, 0, 0);
+}
+
+a {
+    color: rgb(0, 29, 177);;
+}
+
+blockquote {
+    background-color: rgb(230, 229, 229);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+pre {
+    background-color: black;
+    color: white;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 5px;
+}
+

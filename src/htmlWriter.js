@@ -7,6 +7,7 @@ const htmlWriter = (filename, content) => {
   <!DOCTYPE html>
   <html>
     <head>
+      <link rel="stylesheet" href="../src/css/styles.css">
       <title>${filename}</title>
     </head>
     <body>
@@ -15,7 +16,7 @@ const htmlWriter = (filename, content) => {
   </html>
   `.trim().replace(/^\s\s/gm, '');
 
-  writeFile(`${filename}.html`, html, (err) => {
+  writeFile(`./html-output/${filename}.html`, html, (err) => {
     if (err) {
       console.error(err);
       return;
