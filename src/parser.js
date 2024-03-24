@@ -1,3 +1,4 @@
+const { pipe } = require('./pipe.js');
 const { 
   markdownBlockquotesToHTML,
   markdownUnorderedListToHTML,
@@ -25,8 +26,6 @@ const markdownToHTML = [
   markdownItalicToHTML
 ];
 
-const parseMarkdownToHTML = (markdown) => {
-  return markdownToHTML.reduce((acc, func) => func(acc), markdown);
-}
+const parseMarkdownToHTML = (markdown) => pipe(markdownToHTML)(markdown);
 
 module.exports = { parseMarkdownToHTML };
