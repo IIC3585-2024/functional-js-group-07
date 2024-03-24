@@ -1,7 +1,3 @@
-const replaceH1 = (markdown) => {
-  return markdown.replace(/^#\s*(.*)$/gim, '<h1>$1</h1>');
-};
-
 const replaceMarkdown = (regex, replacement) => (markdown) => {
   return markdown.replace(regex, replacement);
 };
@@ -55,7 +51,7 @@ function markdownCodeBlockToHTML (markdown) {
 function markdownParagraphToHTML (markdown) {
 
 
-  // Regex obtained from https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
+  // Regex modified from https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
   const paragraphRegex = /^[A-Za-z\*].*(?:\n[A-Za-z].*)*/gm;
   // replace new lines and double spaces with a break tag
   const breakTagRegex = /\s{2,}\n/g;
@@ -107,26 +103,20 @@ function markdownImageToHTML (markdown) {
   return markdown.replace(imageRegex, transformToImageHTML);
 }
 
+const markdownH1ToHTML = replaceMarkdown(h1Regex, '<h1>$1</h1>');
+const markdownBoldToHTML = replaceMarkdown(boldRegex, '<strong>$1$2</strong>');
+const markdownItalicToHTML = replaceMarkdown(italicRegex, '<em>$1</em>');
 
-// create array of replaceMarkdown functions with each regex
-const markdownToHTML = [
-  
-  markdownBlockquotesToHTML,
+module.exports = {
   markdownUnorderedListToHTML,
   markdownOrderedListToHTML,
+  markdownBlockquotesToHTML,
   markdownCodeBlockToHTML,
-  markdownLinkToHTML,
-  //markdownURLToHTML,
-  markdownImageToHTML,
   markdownParagraphToHTML,
-  replaceMarkdown(h1Regex, '<h1>$1</h1>'),
-  replaceMarkdown(boldRegex, '<strong>$1$2</strong>'),
-  replaceMarkdown(italicRegex, '<em>$1</em>'),
-];
-
-// apply each function to the markdown text
-const markdownToHTMLText = (markdown) => {
-  return markdownToHTML.reduce((acc, func) => func(acc), markdown);
-}
-
-module.exports = { markdownToHTMLText };
+  markdownLinkToHTML,
+  markdownURLToHTML,
+  markdownImageToHTML,
+  markdownH1ToHTML,
+  markdownBoldToHTML,
+  markdownItalicToHTML
+};
