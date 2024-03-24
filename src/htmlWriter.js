@@ -24,4 +24,4 @@ const htmlWriter = (filename, content) => {
   });
 }
 
-module.exports = htmlWriter;
+module.exports = { htmlWriter };
