@@ -46,7 +46,7 @@ function markdownCodeBlockToHTML (markdown) {
     let codeBlock = capturedText.split('\n');
     codeBlock.pop();
     codeBlock = codeBlock.map(line => `    ${line}`).join('\n');
-    return `<code>${codeBlock}\n</code>`;
+    return `<pre><code>${codeBlock}\n</code></pre>`;
   }
   return markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
 }
