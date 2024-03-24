@@ -28,7 +28,7 @@ This is the next section of the paragraph
 
 # This is a header
 
-This is the next paragraph
+This contains a `code` word
 
 [This is a link](https://www.google.com)
 
