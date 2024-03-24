@@ -9,11 +9,8 @@ const replaceMarkdown = (regex, replacement) => (markdown) => {
 const h1Regex = /^#\s*(.*)$/gim;
 const boldRegex = /\*\*(.*)\*\*/g;
 const boldRegex1 = /__(.*)__/g;
-const boldRegex2 = /\*\*(.*)\*\*|__(.*)__/g; // TODO: Investigar cómo referenciar el grupo de captura en el replacement
+const boldRegex2 = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
-
-//console.log(replaceMarkdown(h1Regex, '<h1>$1</h1>')('# Hello, World!\n#  :)'));
-
 
 function markdownUnorderedListToHTML (markdown) {
   const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;
@@ -24,12 +21,6 @@ function markdownUnorderedListToHTML (markdown) {
   return markdown.replace(unorderedListRegex, transformToUnorderedListHTML).replace(wholeUnorderedListRegex,`<ul>\n$1</ul>`)
 }
 
-// Testing de la funcion
-const markdownUnorderedList = `* Item 1
-* Item 2
-* Item 3`
-
-
 function markdownOrderedListToHTML (markdown) {
   const orderedListRegex = /^\s*\d+\.(.*)$/gm;
   const wholeOrderedListRegex = /((?:\d+\..*\n)+)/g;
@@ -38,20 +29,6 @@ function markdownOrderedListToHTML (markdown) {
 
   return markdown.replace(wholeOrderedListRegex,`<ol>\n$1</ol>`).replace(orderedListRegex, transformToOrderedListHTML);
 }
-
-// Testing de la funcion
-const markdownOrderedList = `1. Item 1
-2. Item 2
-3. Item 3`
-
-
-// BLOCKQUOTE
-
-// Testing de la funcion
-const markdownBlockquote = `> Blockquote 1
->
-> Blockquote 3`
-
 
 function markdownBlockquotesToHTML (markdown) {
   const blockquotesRegex = /^>(.*)$/gm;
@@ -64,17 +41,7 @@ function markdownBlockquotesToHTML (markdown) {
     .replace(wholeBlockquoteRegex,`<blockquote>\n$1</blockquote>`);
 }
 
-
-// CODE BLOCK
-
-// Testing de la funcion
-const markdownCodeBlock = `This is a paragraph
-    This is a code block
-This is the next paragraph
-`
-
 function markdownCodeBlockToHTML (markdown) {
-  // code blocks start with ``` and end with ```. It can have multiple lines.
   const codeBlockRegex = /```([\s\S]*?)```/g;
 
   // replace the code block with the code block HTML, and remove the ``` from the start and end
@@ -86,17 +53,6 @@ function markdownCodeBlockToHTML (markdown) {
   }
   return markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
 }
-
-
-// PARAGRAPHS
-
-// Testing de la funcion
-const markdownParagraph = `This is a paragraph  
-This is the next section of the paragraph
-
-## This is a header
-
-This is the next paragraph`
 
 function markdownParagraphToHTML (markdown) {
 
@@ -110,13 +66,6 @@ function markdownParagraphToHTML (markdown) {
 
   return markdown.replace(paragraphRegex, transformToParagraphHTML);
 }
-
-
-// LINKS
-
-// Testing de la funcion
-const markdownLink = `[This is a link](https://www.google.com)`
-const markdownLink2 = `[This is a link](https://www.google.com) and [This is another link](https://www.google.com "Google")`
 
 function markdownLinkToHTML (markdown) {
   const linkRegex = /(?<!\!)\[(.*?)\]\((.*?)\)/g;
@@ -135,13 +84,6 @@ function markdownLinkToHTML (markdown) {
   return markdown.replace(linkRegex, transformToLinkHTML);
 }
 
-
-// URLS AND EMAILS
-
-//Testing de la funcion
-const markdownURl = `<https://www.google.com>`
-const markdownURl2 = `<https://www.google.com> and <fake@example.com>`
-
 function markdownURLToHTML (markdown) {
   const urlRegex = /<(.+?)>/g;
 
@@ -149,14 +91,6 @@ function markdownURLToHTML (markdown) {
 
   return markdown.replace(urlRegex, transformToURLHTML);
 }
-
-
-
-// IMAGES
-
-// Testing de la funcion
-const markdownImage = `![This is an image](https://www.google.com)`
-const markdownImage2 = `![This is an image](https://www.google.com) and ![This is another image](https://www.google.com)`
 
 function markdownImageToHTML (markdown) {
   const imageRegex = /!\[(.*?)\]\((.*?)\)/g;
