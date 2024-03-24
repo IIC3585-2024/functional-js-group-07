@@ -10,7 +10,7 @@ To run the transpiler, you need to have Node.js installed on your machine. You c
 node ./src/index.js <input-file>
 ```
 
-where `input-file` is the path to the markdown file you want to transpile. The transpiled HTML will be written in the `html-output` directory.
+where `input-file` is the path to the markdown file you want to transpile. The transpiled HTML will be written in the `html-output/` directory.
 
 ## Supported Features
 
