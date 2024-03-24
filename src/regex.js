@@ -5,6 +5,7 @@ const replaceMarkdown = (regex, replacement) => (markdown) => {
 const h1Regex = /^#\s*(.*)$/gim;
 const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
+const codeRegex = /`(.*)`/g;
 
 function markdownUnorderedListToHTML (markdown) {
   const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;
@@ -25,10 +26,13 @@ function markdownOrderedListToHTML (markdown) {
 }
 
 function markdownBlockquotesToHTML (markdown) {
-  const blockquotesRegex = /^>(.*)$/gm;
+  const blockquotesRegex = /^> *(.*)$/gm;
   const wholeBlockquoteRegex = /((?:    .*\n)+)/g;
 
-  const transformToBlockquotesHTML = (match, capturedText) => `    ${capturedText}`
+  const transformToBlockquotesHTML = (match, capturedText) => {
+    const pFormatText = markdownParagraphToHTML(capturedText);
+    return `    ${pFormatText}`;
+  }
 
   return markdown
     .replace(blockquotesRegex, transformToBlockquotesHTML)
@@ -43,7 +47,7 @@ function markdownCodeBlockToHTML (markdown) {
     let codeBlock = capturedText.split('\n');
     codeBlock.pop();
     codeBlock = codeBlock.map(line => `    ${line}`).join('\n');
-    return `<code>${codeBlock}\n</code>`;
+    return `<pre><code>${codeBlock}\n</code></pre>`;
   }
   return markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
 }
@@ -106,6 +110,7 @@ function markdownImageToHTML (markdown) {
 const markdownH1ToHTML = replaceMarkdown(h1Regex, '<h1>$1</h1>');
 const markdownBoldToHTML = replaceMarkdown(boldRegex, '<strong>$1$2</strong>');
 const markdownItalicToHTML = replaceMarkdown(italicRegex, '<em>$1</em>');
+const markdownCodeToHTML = replaceMarkdown(codeRegex, '<code>$1</code>');
 
 module.exports = {
   markdownUnorderedListToHTML,
@@ -118,5 +123,6 @@ module.exports = {
   markdownImageToHTML,
   markdownH1ToHTML,
   markdownBoldToHTML,
-  markdownItalicToHTML
+  markdownItalicToHTML,
+  markdownCodeToHTML
 };
