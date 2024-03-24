@@ -14,9 +14,10 @@ input-file is the path to the markdown file you want to transpile. The transpile
 
 ## Supported Features
 
-- Headers (H1 to H6)
-- Bold (** and __)
-- Italics (* and _)
+- [x] Headers (H1 to H6)
+- [x] Emphasis
+    - [x] Bold (** and __)
+    - [x] Italics (* and _)
 - Code
 - Unordered lists (*, +, and -)
 - Ordered lists (1., 2., etc.)
