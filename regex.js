@@ -10,26 +10,18 @@ const h1Regex = /^#\s*(.*)$/gim;
 const boldRegex = /\*\*(.*)\*\*/g;
 const boldRegex1 = /__(.*)__/g;
 const boldRegex2 = /\*\*(.*)\*\*|__(.*)__/g; // TODO: Investigar cómo referenciar el grupo de captura en el replacement
-const italicRegex = /\*{1,1}(.*)\*{1,1}/g; // TODO: Mejorar esto, para que no capture las negritas 
+const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
 
-
-console.log(replaceH1('# Hello, World!'));
-console.log(replaceMarkdown(h1Regex, '<h1>$1</h1>')('# Hello, World!\n#  :)'));
-console.log(replaceMarkdown(boldRegex1, '<strong>$1</strong>')('__texto en negrita__ hola como wlkasjdhfoasjd'));
-console.log(replaceMarkdown(italicRegex, '<em>$1</em>')('*texto en cursiva*, **texto en negrita**'));
+//console.log(replaceMarkdown(h1Regex, '<h1>$1</h1>')('# Hello, World!\n#  :)'));
 
 
 function markdownUnorderedListToHTML (markdown) {
-  const unorderedListRegex = /^\s*[*-+](.*)$/gm;
+  const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;
+  const wholeUnorderedListRegex = /((?:    <li>.*\n)+)/g;
+  
 
   const transformToUnorderedListHTML = (match, capturedText) => `    <li>${capturedText}</li>`;
-  let listItems = markdown.replace(unorderedListRegex, transformToUnorderedListHTML);
-
-  let HTMLText = `<ul>\n${listItems}\n</ul>`;
-
-  // TO DO: poner atencion a doble tab que en realidad significa una sub-lista
-
-  return HTMLText;
+  return markdown.replace(unorderedListRegex, transformToUnorderedListHTML).replace(wholeUnorderedListRegex,`<ul>\n$1</ul>`)
 }
 
 // Testing de la funcion
@@ -37,20 +29,14 @@ const markdownUnorderedList = `* Item 1
 * Item 2
 * Item 3`
 
-console.log(markdownUnorderedListToHTML(markdownUnorderedList));
 
 function markdownOrderedListToHTML (markdown) {
   const orderedListRegex = /^\s*\d+\.(.*)$/gm;
+  const wholeOrderedListRegex = /((?:\d+\..*\n)+)/g;
 
-  // codigo repetido, se puede optimizar
   const transformToOrderedListHTML = (match, capturedText) => `    <li>${capturedText}</li>`;
-  let listItems = markdown.replace(orderedListRegex, transformToOrderedListHTML);
 
-  let HTMLText = `<ol>\n${listItems}\n</ol>`;
-
-  // TO DO: poner atencion a doble tab que en realidad significa una sub-lista
-
-  return HTMLText;
+  return markdown.replace(wholeOrderedListRegex,`<ol>\n$1</ol>`).replace(orderedListRegex, transformToOrderedListHTML);
 }
 
 // Testing de la funcion
@@ -58,7 +44,6 @@ const markdownOrderedList = `1. Item 1
 2. Item 2
 3. Item 3`
 
-console.log(markdownOrderedListToHTML(markdownOrderedList));
 
 // BLOCKQUOTE
 
@@ -70,24 +55,21 @@ const markdownBlockquote = `> Blockquote 1
 
 function markdownBlockquotesToHTML (markdown) {
   const blockquotesRegex = /^>(.*)$/gm;
+  const wholeBlockquoteRegex = /((?:    .*\n)+)/g;
 
-  const transformToBlockquotesHTML = (match, capturedText) => `   ${capturedText}`;
-  let blockquotesItems = markdown.replace(blockquotesRegex, transformToBlockquotesHTML);
+  const transformToBlockquotesHTML = (match,capturedText) => `    ${capturedText}`
 
-  let HTMLText = `<blockquote>\n${blockquotesItems}\n</blockquote>`;
-
-  return HTMLText;
+  return markdown
+    .replace(blockquotesRegex, transformToBlockquotesHTML)
+    .replace(wholeBlockquoteRegex,`<blockquote>\n$1</blockquote>`);
 }
 
-console.log(markdownBlockquotesToHTML(markdownBlockquote));
 
 // CODE BLOCK
 
 // Testing de la funcion
 const markdownCodeBlock = `This is a paragraph
-\`\`\`
-This is a code block
-\`\`\`
+    This is a code block
 This is the next paragraph
 `
 
@@ -96,11 +78,15 @@ function markdownCodeBlockToHTML (markdown) {
   const codeBlockRegex = /```([\s\S]*?)```/g;
 
   // replace the code block with the code block HTML, and remove the ``` from the start and end
-  const transformToCodeBlockHTML = (match, capturedText) => `<code>${capturedText}</code>`;
+  const transformToCodeBlockHTML = (match, capturedText) => {
+    let codeBlock = capturedText.split('\n');
+    codeBlock.pop();
+    codeBlock = codeBlock.map(line => `    ${line}`).join('\n');
+    return `<code>${codeBlock}\n</code>`;
+  }
   return markdown.replace(codeBlockRegex, transformToCodeBlockHTML);
 }
 
-console.log(markdownCodeBlockToHTML(markdownCodeBlock));
 
 // PARAGRAPHS
 
@@ -116,7 +102,7 @@ function markdownParagraphToHTML (markdown) {
 
 
   // Regex obtained from https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
-  const paragraphRegex = /^[A-Za-z].*(?:\n[A-Za-z].*)*/gm;
+  const paragraphRegex = /^[A-Za-z\*].*(?:\n[A-Za-z].*)*/gm;
   // replace new lines and double spaces with a break tag
   const breakTagRegex = /\s{2,}\n/g;
   
@@ -125,7 +111,6 @@ function markdownParagraphToHTML (markdown) {
   return markdown.replace(paragraphRegex, transformToParagraphHTML);
 }
 
-console.log(markdownParagraphToHTML(markdownParagraph));
 
 // LINKS
 
@@ -150,8 +135,6 @@ function markdownLinkToHTML (markdown) {
   return markdown.replace(linkRegex, transformToLinkHTML);
 }
 
-console.log(markdownLinkToHTML(markdownLink));
-console.log(markdownLinkToHTML(markdownLink2));
 
 // URLS AND EMAILS
 
@@ -167,8 +150,6 @@ function markdownURLToHTML (markdown) {
   return markdown.replace(urlRegex, transformToURLHTML);
 }
 
-console.log(markdownURLToHTML(markdownURl));
-console.log(markdownURLToHTML(markdownURl2));
 
 
 // IMAGES
@@ -194,5 +175,65 @@ function markdownImageToHTML (markdown) {
   return markdown.replace(imageRegex, transformToImageHTML);
 }
 
-console.log(markdownImageToHTML(markdownImage));
-console.log(markdownImageToHTML(markdownImage2));
+
+// create array of replaceMarkdown functions with each regex
+const markdownToHTML = [
+  
+  markdownBlockquotesToHTML,
+  markdownUnorderedListToHTML,
+  markdownOrderedListToHTML,
+  markdownCodeBlockToHTML,
+  markdownLinkToHTML,
+  //markdownURLToHTML,
+  markdownImageToHTML,
+  markdownParagraphToHTML,
+  replaceMarkdown(h1Regex, '<h1>$1</h1>'),
+  replaceMarkdown(boldRegex2, '<strong>$1$2</strong>'),
+  replaceMarkdown(italicRegex, '<em>$1</em>'),
+];
+
+// apply each function to the markdown text
+const markdownToHTMLText = (markdown) => {
+  return markdownToHTML.reduce((acc, func) => func(acc), markdown);
+}
+
+// Testing de la funcion
+const markdownText = `# Hello, World!
+
+**texto en negrita** hola como wlkasjdhfoasjd
+
+* Item 1
+* Item 2
+* Item 3
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+> Blockquote 1
+>
+> Blockquote 3
+
+This is a paragraph
+\`\`\`
+This is a code block
+This is the next line of the code block
+
+This is the next line of the code block
+\`\`\`
+This is the next paragraph
+
+This is a paragraph  
+This is the next section of the paragraph
+
+# This is a header
+
+This is the next paragraph
+
+[This is a link](https://www.google.com)
+
+<https://www.google.com>
+
+![This is an image](https://www.google.com)`
+
+console.log(markdownToHTMLText(markdownText));
