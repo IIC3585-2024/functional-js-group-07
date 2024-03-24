@@ -7,9 +7,7 @@ const replaceMarkdown = (regex, replacement) => (markdown) => {
 };
 
 const h1Regex = /^#\s*(.*)$/gim;
-const boldRegex = /\*\*(.*)\*\*/g;
-const boldRegex1 = /__(.*)__/g;
-const boldRegex2 = /\*\*(.*)\*\*|__(.*)__/g;
+const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
 
 function markdownUnorderedListToHTML (markdown) {
@@ -122,7 +120,7 @@ const markdownToHTML = [
   markdownImageToHTML,
   markdownParagraphToHTML,
   replaceMarkdown(h1Regex, '<h1>$1</h1>'),
-  replaceMarkdown(boldRegex2, '<strong>$1$2</strong>'),
+  replaceMarkdown(boldRegex, '<strong>$1$2</strong>'),
   replaceMarkdown(italicRegex, '<em>$1</em>'),
 ];
 
