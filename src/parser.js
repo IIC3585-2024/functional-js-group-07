@@ -7,10 +7,10 @@ const {
   markdownLinkToHTML,
   markdownImageToHTML,
   markdownParagraphToHTML,
-  markdownH1ToHTML,
   markdownBoldToHTML,
   markdownItalicToHTML
 } = require('./regex.js');
+const { headingsParser } = require('./headings.js');
 
 const markdownToHTML = [  
   markdownBlockquotesToHTML,
@@ -21,7 +21,7 @@ const markdownToHTML = [
   //markdownURLToHTML,
   markdownImageToHTML,
   markdownParagraphToHTML,
-  markdownH1ToHTML,
+  headingsParser,
   markdownBoldToHTML,
   markdownItalicToHTML
 ];
