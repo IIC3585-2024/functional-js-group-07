@@ -18,11 +18,11 @@ input-file is the path to the markdown file you want to transpile. The transpile
 - [x] Emphasis
     - [x] Bold (** and __)
     - [x] Italics (* and _)
-- Code
-- Unordered lists (*, +, and -)
-- Ordered lists (1., 2., etc.)
-- Links (inline only, with title attribute)
-- Images (inline only, with title and alt attributes)
-- Blockquotes
-- Code blocks (fenced)
-- Paragraphs
+- [x] Code
+- [x] Unordered lists (*, +, and -)
+- [x] Ordered lists (1., 2., etc.)
+- [x] Links (inline only, with title attribute)
+- [x] Images (inline only, with title and alt attributes)
+- [x] Blockquotes
+- [x] Code blocks (fenced)
+- [x] Paragraphs
