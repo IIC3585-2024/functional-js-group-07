@@ -35,6 +35,8 @@ Los machos son más grandes que las hembras.
 
 El gato doméstico tiene un cráneo más pequeño y huesos más cortos que el gato montés europeo.
 
-[Fuente](https://es.wikipedia.org/wiki/Felis_silvestris_catus)
+[Fuente](https://es.wikipedia.org)
 
-![This is an image](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Cat_on_its_back.jpg/1280px-Cat_on_its_back.jpg)
+Imagen bella:
+
+![This is an image](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Wikipedia-logo-v2-en.svg/1200px-Wikipedia-logo-v2-en.svg.png)
