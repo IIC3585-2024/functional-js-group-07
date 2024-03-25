@@ -8,6 +8,7 @@ const {
   markdownImageToHTML,
   markdownParagraphToHTML,
   markdownH1ToHTML,
+  markdownItalicBoldToHTML,
   markdownBoldToHTML,
   markdownItalicToHTML,
   markdownCodeToHTML,
@@ -24,6 +25,7 @@ const markdownToHTML = [
   markdownImageToHTML,
   markdownParagraphToHTML,
   markdownH1ToHTML,
+  markdownItalicBoldToHTML,
   markdownBoldToHTML,
   markdownItalicToHTML,
   markdownCodeToHTML
