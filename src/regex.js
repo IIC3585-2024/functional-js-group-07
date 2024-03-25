@@ -1,8 +1,9 @@
 const { replaceMarkdown } = require('./replaceMarkdown.js');
 
-const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
-const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
-const codeRegex = /`(.*)`/g;
+const boldRegex = /\*\*([^\*]+)\*\*|__([^_]+)__/g;
+const italicRegex = /(?<!\*)\*(?!\*)([^\*_]+)(?<!\*)\*(?!\*)|(?<!_)_(?!_)([^_]+)(?<!_)_(?!_)/g;
+const italicBoldRegex = /\*\*\*([^\*]+)\*\*\*|___(.*)___/g;
+const codeRegex = /`([^`]+)`/g;
 const horizontalRuleRegex = /^-{3,}|_{3,}|\*{3,}$/gm;
 
 function markdownUnorderedListToHTML (markdown) {
@@ -105,9 +106,10 @@ function markdownImageToHTML (markdown) {
   return markdown.replace(imageRegex, transformToImageHTML);
 }
 
-const markdownBoldToHTML = replaceMarkdown(boldRegex)('<strong>$1$2</strong>');
-const markdownItalicToHTML = replaceMarkdown(italicRegex)('<em>$1</em>');
-const markdownCodeToHTML = replaceMarkdown(codeRegex)('<code>$1</code>');
+const markdownBoldToHTML = replaceMarkdown(boldRegex, '<strong>$1$2</strong>');
+const markdownItalicToHTML = replaceMarkdown(italicRegex, '<em>$1$2</em>'); 
+const markdownItalicBoldToHTML = replaceMarkdown(italicBoldRegex, '<strong><em>$1$2</em></strong>');
+const markdownCodeToHTML = replaceMarkdown(codeRegex, '<code>$1</code>');
 const markdownHorizontalRuleToHTML = replaceMarkdown(horizontalRuleRegex)('<hr>');
 
 module.exports = {
@@ -119,6 +121,7 @@ module.exports = {
   markdownLinkToHTML,
   markdownURLToHTML,
   markdownImageToHTML,
+  markdownItalicBoldToHTML,
   markdownBoldToHTML,
   markdownItalicToHTML,
   markdownCodeToHTML,
