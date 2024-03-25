@@ -18,7 +18,7 @@ where `input-file` is the path to the markdown file you want to transpile. The t
 - [x] Emphasis
     - [x] Bold (** and __)
     - [x] Italics (* and _)
-    - [ ] Bold and Italics (*** and ___)
+    - [x] Bold and Italics (*** and ___)
 - [x] Code
 - [x] Unordered lists (*, +, and -)
 - [x] Ordered lists (1., 2., etc.)
