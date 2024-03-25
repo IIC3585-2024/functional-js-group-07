@@ -21,6 +21,12 @@
 >
 > Blockquote 3
 
+___
+
+> **strong quote**
+> *italic quote*
+> texto relleno
+
 This is a paragraph
 ```
 This is a code block
