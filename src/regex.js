@@ -3,7 +3,7 @@ const { replaceMarkdown } = require('./replaceMarkdown.js');
 const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
 const codeRegex = /`(.*)`/g;
-const horizontalRuleRegex = /-{3,}|_{3,}/g;
+const horizontalRuleRegex = /^-{3,}|_{3,}|\*{3,}$/gm;
 
 function markdownUnorderedListToHTML (markdown) {
   const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;

@@ -23,12 +23,12 @@ const markdownToHTML = [
   markdownCodeBlockToHTML,
   markdownLinkToHTML,
   markdownImageToHTML,
+  markdownHorizontalRuleToHTML,
   markdownParagraphToHTML,
   headingsParser,
   markdownBoldToHTML,
   markdownItalicToHTML,
   markdownCodeToHTML,
-  markdownHorizontalRuleToHTML
 ];
 
 const parseMarkdownToHTML = (markdown) => pipe(markdownToHTML)(markdown);
