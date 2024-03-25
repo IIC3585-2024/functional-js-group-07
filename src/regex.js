@@ -3,6 +3,7 @@ const { replaceMarkdown } = require('./replaceMarkdown.js');
 const boldRegex = /\*\*(.*)\*\*|__(.*)__/g;
 const italicRegex = /(?<!\*)\*(?!\*)(.*)(?<!\*)\*(?!\*)/g;
 const codeRegex = /`(.*)`/g;
+const horizontalRuleRegex = /^-{3,}|_{3,}|\*{3,}$/gm;
 
 function markdownUnorderedListToHTML (markdown) {
   const unorderedListRegex = /^[*-+](?!\*)(.*)$/gm;
@@ -107,6 +108,7 @@ function markdownImageToHTML (markdown) {
 const markdownBoldToHTML = replaceMarkdown(boldRegex)('<strong>$1$2</strong>');
 const markdownItalicToHTML = replaceMarkdown(italicRegex)('<em>$1</em>');
 const markdownCodeToHTML = replaceMarkdown(codeRegex)('<code>$1</code>');
+const markdownHorizontalRuleToHTML = replaceMarkdown(horizontalRuleRegex)('<hr>');
 
 module.exports = {
   markdownUnorderedListToHTML,
@@ -119,5 +121,6 @@ module.exports = {
   markdownImageToHTML,
   markdownBoldToHTML,
   markdownItalicToHTML,
-  markdownCodeToHTML
+  markdownCodeToHTML,
+  markdownHorizontalRuleToHTML
 };
