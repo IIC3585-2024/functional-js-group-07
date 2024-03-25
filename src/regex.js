@@ -106,10 +106,10 @@ function markdownImageToHTML (markdown) {
   return markdown.replace(imageRegex, transformToImageHTML);
 }
 
-const markdownBoldToHTML = replaceMarkdown(boldRegex, '<strong>$1$2</strong>');
-const markdownItalicToHTML = replaceMarkdown(italicRegex, '<em>$1$2</em>'); 
-const markdownItalicBoldToHTML = replaceMarkdown(italicBoldRegex, '<strong><em>$1$2</em></strong>');
-const markdownCodeToHTML = replaceMarkdown(codeRegex, '<code>$1</code>');
+const markdownBoldToHTML = replaceMarkdown(boldRegex)('<strong>$1$2</strong>');
+const markdownItalicToHTML = replaceMarkdown(italicRegex)('<em>$1$2</em>'); 
+const markdownItalicBoldToHTML = replaceMarkdown(italicBoldRegex)('<strong><em>$1$2</em></strong>');
+const markdownCodeToHTML = replaceMarkdown(codeRegex)('<code>$1</code>');
 const markdownHorizontalRuleToHTML = replaceMarkdown(horizontalRuleRegex)('<hr>');
 
 module.exports = {
