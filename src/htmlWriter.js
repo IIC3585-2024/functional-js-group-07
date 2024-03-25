@@ -1,4 +1,5 @@
 const { writeFile } = require('fs');
+const fs = require('fs');
 
 const htmlWriter = (filename, content) => {
   const formattedContent = content.replace(/\n/g, '\n    ').trim();
@@ -15,6 +16,10 @@ const htmlWriter = (filename, content) => {
     </body>
   </html>
   `.trim().replace(/^\s\s/gm, '');
+
+  if (!fs.existsSync('./html-output')) {
+    fs.mkdirSync('./html-output');
+  }
 
   writeFile(`./html-output/${filename}.html`, html, (err) => {
     if (err) {

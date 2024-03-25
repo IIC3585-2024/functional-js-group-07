@@ -1,10 +1,17 @@
 # Hello, World!
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
 
 **texto en negrita** hola como wlkasjdhfoasjd
 
 * Item 1
 * Item 2
 * Item 3
+
+***
 
 1. Item 1
 2. Item 2
@@ -14,6 +21,12 @@
 >
 > Blockquote 3
 
+___
+
+> **strong quote**
+> *italic quote*
+> texto relleno
+
 This is a paragraph
 ```
 This is a code block
@@ -22,6 +35,8 @@ This is the next line of the code block
 This is the next line of the code block
 ```
 This is the next paragraph
+
+---
 
 This is a paragraph  
 This is the next section of the paragraph
