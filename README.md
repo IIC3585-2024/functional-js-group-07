@@ -28,3 +28,9 @@ where `input-file` is the path to the markdown file you want to transpile. The t
 - [x] Code blocks (fenced)
 - [x] Paragraphs
 - [x] Horizontal Rules
+
+## References
+
+- https://www.markdownguide.org/basic-syntax/
+- https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
+- https://chortle.ccsu.edu/finiteautomata/Section07/sect07_12.html
