@@ -23,6 +23,6 @@ input-file is the path to the markdown file you want to transpile. The transpile
 - [x] Ordered lists (1., 2., etc.)
 - [x] Links (inline only, with title attribute)
 - [x] Images (inline only, with title and alt attributes)
-- [x] Blockquotes
+- [x] Blockquotes (with multiple paragraphs)
 - [x] Code blocks (fenced)
 - [x] Paragraphs
