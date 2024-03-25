@@ -34,4 +34,4 @@ This contains a `code` word
 
 <https://www.google.com>
 
-![This is an image](https://www.google.com)
+![This is an image](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png)
