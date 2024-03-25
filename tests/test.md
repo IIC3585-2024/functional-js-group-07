@@ -49,4 +49,4 @@ This contains a `code` word
 
 <https://www.google.com>
 
-![This is an image](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1920px-Google_2015_logo.svg.png)
+![This is an image](https://media-front.elmostrador.cl/2022/08/Gato-2-700x399.jpg)
