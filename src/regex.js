@@ -52,8 +52,6 @@ function markdownCodeBlockToHTML (markdown) {
 }
 
 function markdownParagraphToHTML (markdown) {
-
-
   // Regex modified from https://stackoverflow.com/questions/64451899/markdown-paragraph-tag-regex
   const paragraphRegex = /^[A-Za-z\*].*(?:\n[A-Za-z].*)*/gm;
   // replace new lines and double spaces with a break tag
