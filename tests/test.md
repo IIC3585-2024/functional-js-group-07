@@ -28,6 +28,8 @@ This is the next line of the code block
 ```
 This is the next paragraph
 
+---
+
 This is a paragraph  
 This is the next section of the paragraph
 
