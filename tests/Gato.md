@@ -19,6 +19,8 @@ A continuación se explica el método de evaluación del grupo 7 para esta entre
 for estudiante in grupo:
   print("Un siete! :)")
 ```  
+
+***
   
 ## El gato
 

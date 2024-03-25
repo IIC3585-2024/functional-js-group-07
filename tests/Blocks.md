@@ -13,6 +13,8 @@
 > “La guerra no lo hace todo.
 > La paz y la libertad también son importantes.” – *Padmé Amidala*
 
+___
+
 # Recordatorio IIC1103
 
 ## Instrucciones básicas

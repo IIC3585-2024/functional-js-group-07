@@ -25,6 +25,8 @@
 + 3 huevos duros cortados en cuartos
 + 2 huevos levemente batidos para pintar
 
+---
+
 ## Preparación
 
 ### ¿Cómo hacer la masa para la tradicional empanada chilena?
