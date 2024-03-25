@@ -16,8 +16,8 @@ function markdownUnorderedListToHTML (markdown) {
 }
 
 function markdownOrderedListToHTML (markdown) {
-  const orderedListRegex = /^\s*\d+\.(.*)$/gm;
-  const wholeOrderedListRegex = /((?:\d+\..*\n)+)/g;
+  const orderedListRegex = /^\s*\d+\. (.*)$/gm;
+  const wholeOrderedListRegex = /((?:\d+\. .*\n)+)/g;
 
   const transformToOrderedListHTML = (match, capturedText) => `    <li>${capturedText}</li>`;
 

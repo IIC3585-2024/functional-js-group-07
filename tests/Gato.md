@@ -39,4 +39,4 @@ El gato doméstico tiene un cráneo más pequeño y huesos más cortos que el ga
 
 Imagen bella:
 
-![This is an image](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Wikipedia-logo-v2-en.svg/1200px-Wikipedia-logo-v2-en.svg.png)
+![This is an image](https://assets.newatlas.com/dims4/default/5119b56/2147483647/strip/true/crop/1995x1330+3+0/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2F44%2F62%2F4517b90b452eb347d1ff0e4110b3%2Fdepositphotos-245256412-l.jpg)
