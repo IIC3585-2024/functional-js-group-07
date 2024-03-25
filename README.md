@@ -27,3 +27,4 @@ where `input-file` is the path to the markdown file you want to transpile. The t
 - [x] Blockquotes
 - [x] Code blocks (fenced)
 - [x] Paragraphs
+- [x] Horizontal Rules

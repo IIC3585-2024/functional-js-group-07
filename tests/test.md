@@ -11,6 +11,8 @@
 * Item 2
 * Item 3
 
+***
+
 1. Item 1
 2. Item 2
 3. Item 3
@@ -18,6 +20,12 @@
 > Blockquote 1
 >
 > Blockquote 3
+
+___
+
+> **strong quote**
+> *italic quote*
+> texto relleno
 
 This is a paragraph
 ```
@@ -27,6 +35,8 @@ This is the next line of the code block
 This is the next line of the code block
 ```
 This is the next paragraph
+
+---
 
 This is a paragraph  
 This is the next section of the paragraph
